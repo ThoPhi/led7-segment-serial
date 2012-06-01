@@ -1,0 +1,279 @@
+BL51 BANKED LINKER/LOCATER V6.15                                                        07/30/2011  09:30:54  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.15, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE Main.obj, Timer.obj, SPI.obj, LED7.obj TO DigitalClock RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  Main.obj (MAIN)
+  Timer.obj (TIMER)
+  SPI.obj (SPI)
+  LED7.obj (LED7)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  DigitalClock (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0005H     UNIT         ?DT?TIMER
+            IDATA   000DH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0008H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+                    000EH     000DH                  *** GAP ***
+            CODE    001BH     0003H     ABSOLUTE     
+                    001EH     07E2H                  *** GAP ***
+            CODE    0800H     001DH     UNIT         ?PR?TIMER1_ISR?TIMER
+            CODE    081DH     0015H     UNIT         ?PR?INIT_TIMER0?TIMER
+            CODE    0832H     0015H     UNIT         ?PR?INIT_TIMER1?TIMER
+            CODE    0847H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0853H     000BH     UNIT         ?PR?TIMER0_ISR?TIMER
+            CODE    085EH     000BH     UNIT         ?PR?_DELAY_MS?TIMER
+            CODE    0869H     000AH     UNIT         ?PR?INIT?MAIN
+            CODE    0873H     0005H     UNIT         ?PR?MAIN?MAIN
+            CODE    0878H     0003H     UNIT         ?PR?START_TIMER0?TIMER
+            CODE    087BH     0003H     UNIT         ?PR?START_TIMER1?TIMER
+            CODE    087EH     0003H     UNIT         ?PR?STOP_TIMER0?TIMER
+            CODE    0881H     0003H     UNIT         ?PR?STOP_TIMER1?TIMER
+            CODE    0884H     0001H     UNIT         ?PR?INIT_SPI?SPI
+            CODE    0885H     0001H     UNIT         ?PR?INIT_LED7?LED7
+
+
+
+OVERLAY MAP OF MODULE:   DigitalClock (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+BL51 BANKED LINKER/LOCATER V6.15                                                      07/30/2011  09:30:54  PAGE 2
+
+
+
+?PR?MAIN?MAIN
+  +--> ?PR?INIT?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  DigitalClock (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  D:00D8H         PUBLIC        CCON
+  C:0873H         PUBLIC        main
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  C:0869H         PUBLIC        init
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          INIT
+  C:0869H         LINE#         9
+  C:0869H         LINE#         10
+  C:0869H         LINE#         11
+  C:086CH         LINE#         12
+  C:086EH         LINE#         13
+  C:0870H         LINE#         14
+  C:0872H         LINE#         15
+  -------         ENDPROC       INIT
+  -------         PROC          MAIN
+  C:0873H         LINE#         16
+  C:0873H         LINE#         17
+  C:0873H         LINE#         18
+  C:0876H         LINE#         20
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        TIMER
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0881H         PUBLIC        stop_timer1
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  C:0853H         PUBLIC        timer0_isr
+  C:0800H         PUBLIC        timer1_isr
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  D:00D8H         PUBLIC        CCON
+  D:0098H         PUBLIC        SCON
+  D:0008H         PUBLIC        counter0
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+BL51 BANKED LINKER/LOCATER V6.15                                                      07/30/2011  09:30:54  PAGE 3
+
+
+  D:000AH         PUBLIC        counter1
+  D:008CH         PUBLIC        TH0
+  D:008DH         PUBLIC        TH1
+  D:008AH         PUBLIC        TL0
+  D:008BH         PUBLIC        TL1
+  C:085EH         PUBLIC        _delay_ms
+  B:0088H.4       PUBLIC        TR0
+  B:0088H.6       PUBLIC        TR1
+  C:0878H         PUBLIC        start_timer0
+  C:087BH         PUBLIC        start_timer1
+  D:00C8H         PUBLIC        T2CON
+  C:081DH         PUBLIC        init_timer0
+  C:0832H         PUBLIC        init_timer1
+  D:00D0H         PUBLIC        PSW
+  D:000CH         PUBLIC        value_display
+  C:087EH         PUBLIC        stop_timer0
+  -------         PROC          INIT_TIMER0
+  C:081DH         LINE#         10
+  C:081DH         LINE#         11
+  C:081DH         LINE#         12
+  C:0820H         LINE#         13
+  C:0823H         LINE#         15
+  C:0826H         LINE#         16
+  C:0829H         LINE#         18
+  C:082CH         LINE#         19
+  C:082FH         LINE#         21
+  C:0831H         LINE#         23
+  -------         ENDPROC       INIT_TIMER0
+  -------         PROC          INIT_TIMER1
+  C:0832H         LINE#         25
+  C:0832H         LINE#         26
+  C:0832H         LINE#         27
+  C:0835H         LINE#         28
+  C:0838H         LINE#         30
+  C:083BH         LINE#         31
+  C:083EH         LINE#         33
+  C:0841H         LINE#         34
+  C:0844H         LINE#         36
+  C:0846H         LINE#         38
+  -------         ENDPROC       INIT_TIMER1
+  -------         PROC          START_TIMER0
+  C:0878H         LINE#         40
+  C:0878H         LINE#         41
+  C:0878H         LINE#         42
+  C:087AH         LINE#         43
+  -------         ENDPROC       START_TIMER0
+  -------         PROC          START_TIMER1
+  C:087BH         LINE#         45
+  C:087BH         LINE#         46
+  C:087BH         LINE#         47
+  C:087DH         LINE#         48
+  -------         ENDPROC       START_TIMER1
+  -------         PROC          STOP_TIMER0
+  C:087EH         LINE#         50
+  C:087EH         LINE#         51
+  C:087EH         LINE#         52
+  C:0880H         LINE#         53
+BL51 BANKED LINKER/LOCATER V6.15                                                      07/30/2011  09:30:54  PAGE 4
+
+
+  -------         ENDPROC       STOP_TIMER0
+  -------         PROC          STOP_TIMER1
+  C:0881H         LINE#         55
+  C:0881H         LINE#         56
+  C:0881H         LINE#         57
+  C:0883H         LINE#         58
+  -------         ENDPROC       STOP_TIMER1
+  -------         PROC          TIMER0_ISR
+  C:0853H         LINE#         60
+  C:0853H         LINE#         62
+  C:0855H         LINE#         65
+  C:0858H         LINE#         66
+  C:085BH         LINE#         72
+  C:085DH         LINE#         73
+  -------         ENDPROC       TIMER0_ISR
+  -------         PROC          TIMER1_ISR
+  C:0800H         LINE#         74
+  C:0802H         LINE#         77
+  C:0804H         LINE#         80
+  C:0807H         LINE#         81
+  C:080AH         LINE#         86
+  C:0810H         LINE#         87
+  C:0810H         LINE#         88
+  C:0818H         LINE#         89
+  C:0818H         LINE#         91
+  C:081AH         LINE#         92
+  -------         ENDPROC       TIMER1_ISR
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        duration
+  C:085EH         LINE#         93
+  C:085EH         LINE#         94
+  C:085EH         LINE#         95
+  C:0862H         LINE#         96
+  C:0868H         LINE#         97
+  C:0868H         LINE#         98
+  C:0868H         LINE#         99
+  -------         ENDPROC       _DELAY_MS
+  -------         ENDMOD        TIMER
+
+  -------         MODULE        SPI
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0884H         PUBLIC        init_SPI
+  -------         PROC          INIT_SPI
+  C:0884H         LINE#         4
+  C:0884H         LINE#         5
+  C:0884H         LINE#         7
+  -------         ENDPROC       INIT_SPI
+  -------         ENDMOD        SPI
+
+  -------         MODULE        LED7
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0885H         PUBLIC        init_LED7
+  -------         PROC          INIT_LED7
+  C:0885H         LINE#         4
+  C:0885H         LINE#         5
+  C:0885H         LINE#         7
+  -------         ENDPROC       INIT_LED7
+BL51 BANKED LINKER/LOCATER V6.15                                                      07/30/2011  09:30:54  PAGE 5
+
+
+  -------         ENDMOD        LED7
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INIT_TIMER0?TIMER
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INIT_TIMER1?TIMER
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?START_TIMER0?TIMER
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?START_TIMER1?TIMER
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?STOP_TIMER0?TIMER
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?STOP_TIMER1?TIMER
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_MS?TIMER
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INIT_SPI?SPI
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INIT_LED7?LED7
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0080H BYTE ( 6%) *
+******************************************************************************
+
+Program Size: data=14.0 xdata=0 code=143
+LINK/LOCATE RUN COMPLETE.  9 WARNING(S),  0 ERROR(S)
