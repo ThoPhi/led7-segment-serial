@@ -1,0 +1,6 @@
+"Main.obj",
+"Timer.obj",
+"SPI.obj",
+"LED7.obj" 
+TO "DigitalClock" 
+RAMSIZE(256) 

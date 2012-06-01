@@ -1,0 +1,125 @@
+C51 COMPILER V8.15   TIMER                                                                 07/30/2011 09:30:44 PAGE 1   
+
+
+C51 COMPILER V8.15, COMPILATION OF MODULE TIMER
+OBJECT MODULE PLACED IN Timer.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE TIMER\Timer.c BROWSE DEBUG OBJECTEXTEND PRINT(.\Timer.lst) OBJECT(Timer.obj
+                    -)
+
+line level    source
+
+   1          
+   2          #include "Timer.h"
+   3          
+   4          
+   5          
+   6          unsigned char value_display;
+   7          unsigned int  counter0;
+   8          unsigned int counter1;
+   9          
+  10          void init_timer0()
+  11          {
+  12   1              IE &= ~(0x02);// enable timer 0
+  13   1              IE |= 0x02;
+  14   1              
+  15   1              TMOD &= ~(0x01);// setup mode for timer 0
+  16   1              TMOD |= 0x01;   
+  17   1      
+  18   1              TH0 = (-10000/256); 
+  19   1              TL0 = (-10000%256);
+  20   1      
+  21   1              TR0 = 1;//start timer0  
+  22   1              
+  23   1      }
+  24          
+  25          void init_timer1()
+  26          {
+  27   1              IE &= ~(0x08);// enable timer 0
+  28   1              IE |= 0x08;
+  29   1              
+  30   1              TMOD &= ~(0x10);// setup mode for timer 0
+  31   1              TMOD |= 0x10;   
+  32   1      
+  33   1              TH1 = (-10000/256); 
+  34   1              TL1 = (-10000%256);
+  35   1      
+  36   1              TR1 = 1; //start timer1
+  37   1              
+  38   1      }
+  39          
+  40          void start_timer0()
+  41          {
+  42   1              TR0 = 1;
+  43   1      }
+  44          
+  45          void start_timer1()
+  46          {
+  47   1              TR1 = 1;
+  48   1      }
+  49          
+  50          void stop_timer0()
+  51          {
+  52   1              TR0 = 0;
+  53   1      }
+  54          
+C51 COMPILER V8.15   TIMER                                                                 07/30/2011 09:30:44 PAGE 2   
+
+  55          void stop_timer1()
+  56          {
+  57   1              TR1 = 0;
+  58   1      }
+  59          
+  60          void timer0_isr() interrupt 1
+  61          {
+  62   1              TR0 = 0;//stop timer 0
+  63   1      
+  64   1              // reinitialize
+  65   1              TH0 = (-1000/256); 
+  66   1              TL0 = (-1000%256);
+  67   1      
+  68   1              //Add your code here
+  69   1              
+  70   1      //      scan_led_matrix();
+  71   1      
+  72   1              TR0 = 1;//start timer 0
+  73   1      }
+  74          void timer1_isr() interrupt 3
+  75          {
+  76   1              
+  77   1              TR1 = 0;//stop timer 1
+  78   1      
+  79   1              // reinitialize
+  80   1              TH1 = (-1000/256); 
+  81   1              TL1 = (-1000%256);
+  82   1      
+  83   1              //Add your code here
+  84   1      
+  85   1              
+  86   1              if(counter1!= 0)
+  87   1              {
+  88   2                      counter1--;
+  89   2              }
+  90   1      
+  91   1              TR1 = 1;//start timer 1
+  92   1      }
+  93          void delay_ms(unsigned int duration)
+  94          {
+  95   1              counter1 = duration;
+  96   1              while(counter1 !=0)
+  97   1              {
+  98   2              }
+  99   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    105    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      5    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
